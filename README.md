@@ -1,5 +1,7 @@
 # 🗣️ Article Hörbar Synthesis App
 
+**Version: 2.0.1**
+
 This is a Streamlit-based web application that transforms news articles into audio-friendly summaries using OpenAI's language models.
 
 ---
@@ -35,8 +37,9 @@ pip install -r requirements.txt
 ```toml
 [api_tokens]
 exporter_auth_token = "your_exporter_token"
-openai_token = "your_openai_api_key"
 exporter_api_base_url = "https://your-exporter-api-url/"
+tts_api_url = "https://your-tts-api-url.com"
+tts_api_key = "your_tts_api_key"
 ```
 
 4. **Run the app locally**
@@ -50,9 +53,10 @@ streamlit run app.py
 ## 🧠 How it works
 
 - User enters an `articleId` from the internal CMS.
-- The app fetches the article via the Exporter API.
-- It extracts `title` and `text`, and sends them to OpenAI for summarization.
-- The summarized result is shown in a text area.
+- The app fetches the article via the Exporter API using the ID.
+- It extracts `title` and `text` from the Exporter response.
+- These are sent to the Article Optimization Service (defined via `tts_api_url` and `tts_api_key` in `secrets.toml`).
+- The returned `content` from the TTS API is rendered in the app using markdown formatting.
 
 ---
 

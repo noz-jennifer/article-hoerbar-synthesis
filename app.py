@@ -7,7 +7,7 @@ from typing import Optional
 
 # Titel der App
 st.title('Hörbar Article Synthesis')
-st.caption('Version 2.0.0')
+st.caption('Version 2.0.1')
 
 # Eingabefeld für die Artikel-ID
 article_id = st.text_input('Enter Article ID')
@@ -65,6 +65,6 @@ if st.button('Fetch and Process'):
                 st.error("Fehler beim Abrufen der Hörfassung vom TTS-Service.")
             else:
                 tts_json = tts_response.json()
-                formatted_content = tts_json.get("content", "").replace("\n\n", "\n\n---\n\n")
+                formatted_content = tts_json.get("content", "").replace("\n\n", "\n\n")
                 st.success("Hörbar Article Version:")
                 st.markdown(formatted_content)
